@@ -231,6 +231,12 @@ function ManageFileDialog({ fileId, children }: PropsWithChildElem<Props>) {
   );
 }
 
+const NEW_FILE_CONTENT = `\
+(
+  stack print;
+)\
+`;
+
 export function NewFileButton() {
   const fileCount = useFileCount();
   const dispatch = useFileDispatch();
@@ -245,7 +251,7 @@ export function NewFileButton() {
           name: `new-file-${fileCount + 1}.fp`,
           cts: id,
           uts: id,
-          content: "",
+          content: NEW_FILE_CONTENT,
         });
         editorDispatch({
           fileId: id,

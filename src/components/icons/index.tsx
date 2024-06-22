@@ -71,3 +71,7 @@ export function AddIcon() {
 export function DoneIcon() {
   return <span className="material-icons-outlined">done</span>;
 }
+
+export function PlayIcon() {
+  return <span className="material-icons-outlined">play_arrow</span>;
+}

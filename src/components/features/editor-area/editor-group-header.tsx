@@ -1,6 +1,6 @@
 import { useActiveEditorForGroup } from "../../../controllers/editors";
 import { useFile } from "../../../controllers/files";
-import { Box, Flex } from "../../common/box";
+import { Flex } from "../../common/box";
 import { button } from "../../common/button";
 import { CloseIcon } from "../../icons";
 
