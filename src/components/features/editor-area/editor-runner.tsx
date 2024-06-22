@@ -77,6 +77,7 @@ export function EditorRunner() {
           maxHeight="36rem"
           overflowY="auto"
           whiteSpace="pre-wrap"
+          resize="vertical"
         >
           {result.map((row) => (
             <div>{row}</div>

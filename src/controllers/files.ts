@@ -18,11 +18,13 @@ const useFileController = create<Record<string, ContentFile>>()(
   })
 );
 
+const SYSTEM_FILES = ["std", "tutorial", "extensions"];
+
 export function useFileCount() {
   return useFileController(
     (s) =>
       Object.entries(s).filter(
-        ([k, v]) => k !== "std" && k !== "tutorial" && typeof v != "undefined"
+        ([k, v]) => !SYSTEM_FILES.includes(k) && typeof v != "undefined"
       ).length
   );
 }
@@ -32,7 +34,7 @@ export function useFileList() {
 }
 
 export function useSystemFileList() {
-  return ["std", "tutorial"];
+  return SYSTEM_FILES;
 }
 
 export function useUserFileList() {
@@ -40,7 +42,7 @@ export function useUserFileList() {
     useShallow((s) =>
       Object.entries(s)
         .filter(
-          ([k, v]) => k !== "std" && k !== "tutorial" && typeof v != "undefined"
+          ([k, v]) => !SYSTEM_FILES.includes(k) && typeof v != "undefined"
         )
         .map(([k]) => k)
     )
@@ -65,6 +67,6 @@ export function useFileDispatch() {
 
 export function readFileSync(filename: string) {
   return Object.entries(useFileController.getState()).find(
-    ([k, v]) => v.name.slice(0, -3) === filename
+    ([_, v]) => v.name.slice(0, -3) === filename
   )?.[1]?.content;
 }
