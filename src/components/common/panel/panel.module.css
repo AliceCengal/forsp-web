@@ -1,0 +1,45 @@
+.base {
+  border-radius: 4px;
+}
+
+.white {
+  background-color: white;
+  border: 1px solid var(--c-front);
+}
+
+.back {
+  background-color: var(--c-back);
+  color: var(--c-con-9);
+  border: 1px solid var(--c-con-5);
+}
+
+.conBack {
+  background-color: var(--c-con-1);
+  border: 1px solid var(--c-con-5);
+}
+
+.xs {
+  max-width: var(--sp-xs);
+  margin-inline: auto;
+}
+
+.sm {
+  max-width: var(--sp-sm);
+  margin-inline: auto;
+}
+
+.md {
+  max-width: var(--sp-md);
+  margin-inline: auto;
+}
+
+.lg {
+  max-width: var(--sp-lg);
+  margin-inline: auto;
+}
+
+.tabPanel {
+  border-top: none;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}

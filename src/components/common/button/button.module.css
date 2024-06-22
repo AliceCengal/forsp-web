@@ -1,0 +1,142 @@
+.base {
+  font-weight: 500;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+  line-height: 1;
+  font-size: 0.9rem;
+  position: relative;
+  align-content: center;
+}
+
+a.base,
+a.base:hover {
+  display: inline-block;
+  text-decoration: none;
+}
+
+.bold,
+.bold:hover {
+  background-color: var(--c-front);
+  color: var(--c-conf-9);
+}
+
+.bold:hover::after,
+.bold.active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--c-conf-2);
+}
+
+.soft,
+.soft:hover {
+  background-color: var(--c-con-1);
+  color: var(--c-con-9);
+}
+
+.soft:hover::after,
+.soft.active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--c-con-1);
+}
+
+.tab,
+.tab:hover {
+  background-color: var(--c-con-1);
+  color: var(--c-con-9);
+  border-top: 1px solid var(--c-con-9);
+  border-right: 1px solid var(--c-con-9);
+  border-left: 1px solid var(--c-con-9);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.tab:not(.active):not(:hover)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--c-con-1);
+}
+
+.tab:not(.active) {
+  border-bottom: 1px solid var(--c-con-9);
+}
+
+*:has(> .tab) {
+  display: flex;
+  overflow-x: auto;
+}
+
+*:has(> .tab)::after {
+  content: "";
+  display: block;
+  flex-grow: 1;
+  border-bottom: 1px solid var(--c-con-9);
+}
+
+.line,
+.line:hover {
+  border: 1px solid var(--c-front);
+  color: var(--c-front);
+  background-color: transparent;
+}
+
+.line:hover::after,
+.line.active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--c-con-2);
+}
+
+.text {
+  color: var(--c-front);
+  background-color: transparent;
+}
+
+.text:hover,
+.text.active {
+  color: var(--c-con-8);
+}
+
+.small {
+  height: 28px;
+  padding-inline: 0;
+}
+
+.small > *:not(:global(.material-icons-outlined)):not(:global(.spinner)) {
+  margin-inline: var(--sp-1);
+}
+
+.regular {
+  height: 40px;
+  padding-inline: var(--sp-1);
+}
+
+.regular > *:not(:global(.material-icons-outlined)):not(:global(.spinner)) {
+  margin-inline: var(--sp-1);
+}
+
+.large {
+  height: 48px;
+  padding-inline: var(--sp-2);
+}
+
+.large > *:not(:global(.material-icons-outlined)):not(:global(.spinner)) {
+  margin-inline: var(--sp-1);
+}
+
+.center {
+  text-align: center;
+}
+
+.start {
+  text-align: start;
+}
+
+.end {
+  text-align: end;
+}
