@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useActiveEditorForGroup } from "../../../controllers/editors";
-import { useFile } from "../../../controllers/files";
+import { readFileSync, useFile } from "../../../controllers/files";
 import { Box, Flex } from "../../common/box";
 import { button } from "../../common/button";
 import { CloseIcon, PlayIcon } from "../../icons";
 import { panel } from "../../common/panel";
+import { IO, run, setup } from "../../../lib/forsp";
 
 export function EditorRunner() {
   const active = useActiveEditorForGroup();
@@ -12,6 +13,39 @@ export function EditorRunner() {
 
   const [isRunning, setRunning] = useState(false);
   const [result, setResult] = useState<string[]>([]);
+
+  function handleRun() {
+    setRunning(true);
+    setResult([`Running "${file.name}"...`]);
+
+    const adapter: IO = {
+      std: {
+        readLine: function (): string {
+          throw new Error("Function not implemented.");
+        },
+        printLine: function (str?: string | undefined): void {
+          setResult((res) => res.concat(str ?? ""));
+        },
+        printError: function (str?: string | undefined): void {
+          setResult((res) => res.concat(str ?? ""));
+        },
+      },
+      file: {
+        read: function (filePath: string): string {
+          if (!filePath.startsWith("./")) {
+            throw new Error(`File not found: "${filePath}"`);
+          }
+          const fileContent = readFileSync(filePath.slice(2));
+          if (!fileContent) {
+            throw new Error(`File not found: "${filePath}"`);
+          }
+          return fileContent;
+        },
+      },
+    };
+    const state = setup(adapter, file.content);
+    run(state);
+  }
 
   return (
     <Box
@@ -32,10 +66,7 @@ export function EditorRunner() {
         )}
         <button
           className={button({ kind: "bold", size: "large" })}
-          onClick={() => {
-            setRunning(true);
-            setResult([`Running "${file.name}"...`]);
-          }}
+          onClick={handleRun}
         >
           <PlayIcon />
         </button>
@@ -43,9 +74,9 @@ export function EditorRunner() {
       {isRunning && (
         <Box
           className={panel()}
-          maxHeight="10rem"
+          maxHeight="36rem"
           overflowY="auto"
-          whiteSpace="pre"
+          whiteSpace="pre-wrap"
         >
           {result.map((row) => (
             <div>{row}</div>
