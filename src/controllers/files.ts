@@ -19,11 +19,32 @@ const useFileController = create<Record<string, ContentFile>>()(
 );
 
 export function useFileCount() {
-  return useFileController((s) => Object.keys(s).length);
+  return useFileController(
+    (s) =>
+      Object.entries(s).filter(
+        ([k, v]) => k !== "std" && k !== "tutorial" && typeof v != "undefined"
+      ).length
+  );
 }
 
 export function useFileList() {
   return useFileController(useShallow((s) => Object.keys(s)));
+}
+
+export function useSystemFileList() {
+  return ["std", "tutorial"];
+}
+
+export function useUserFileList() {
+  return useFileController(
+    useShallow((s) =>
+      Object.entries(s)
+        .filter(
+          ([k, v]) => k !== "std" && k !== "tutorial" && typeof v != "undefined"
+        )
+        .map(([k]) => k)
+    )
+  );
 }
 
 export function useFile(id: string) {

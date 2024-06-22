@@ -59,3 +59,15 @@ export function TabIcon() {
 export function CloseIcon() {
   return <span className="material-icons-outlined">close</span>;
 }
+
+export function MoreIcon() {
+  return <span className="material-icons-outlined">more_vert</span>;
+}
+
+export function AddIcon() {
+  return <span className="material-icons-outlined">add</span>;
+}
+
+export function DoneIcon() {
+  return <span className="material-icons-outlined">done</span>;
+}

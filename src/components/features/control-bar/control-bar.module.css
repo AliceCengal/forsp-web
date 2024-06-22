@@ -2,4 +2,37 @@
   width: 240px;
   border: 1px solid lightgray;
   padding: 8px;
+  height: 100%;
+}
+
+.file-item-row {
+  height: 26px;
+}
+
+.file-item-row:hover {
+  background-color: var(--c-con-1);
+}
+
+.file-item-button,
+.file-item-button-active {
+  all: unset;
+  outline: revert;
+}
+
+.file-item-button {
+  text-decoration: underline;
+}
+
+.file-item-button-active {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.file-item-more {
+  display: none;
+}
+
+.file-item-row:hover .file-item-more,
+.file-item-button-active ~ .file-item-more {
+  display: initial;
 }

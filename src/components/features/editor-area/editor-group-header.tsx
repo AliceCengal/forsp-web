@@ -22,7 +22,7 @@ function EditorHeader() {
 
   return (
     <Flex alignItems="center">
-      <span>{file?.name}</span>&nbsp;
+      <span>{file?.name ?? ""}</span>&nbsp;
       <button
         className={button({ kind: "text", size: "small" })}
         style={{ display: "none" }}

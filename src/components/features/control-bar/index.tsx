@@ -1,40 +1,63 @@
-import {
-  useFileCount,
-  useFileDispatch,
-  useFileList,
-} from "../../../controllers/files";
-import { Box, Grid } from "../../common/box";
+import { useSystemFileList, useUserFileList } from "../../../controllers/files";
+import { Box, Flex, Grid } from "../../common/box";
 import styles from "./control-bar.module.css";
-import { FileItem } from "./file-item";
+import { NewFileButton, SystemFileItem, UserFileItem } from "./file-item";
 
 export function ControlBar() {
-  const fileCount = useFileCount();
-  const dispatch = useFileDispatch();
-  const fileList = useFileList();
+  const systemFiles = useSystemFileList();
+  const userFiles = useUserFileList();
 
   return (
     <div className={styles["container"]}>
-      <Grid>
-        <Box as="h1" textAlign="center">
-          Forsp Web Editor
+      <Flex height="100%" flexDirection="column">
+        <Box as="h1">Forsp Web Editor</Box>
+
+        <div>
+          <a href="https://github.com/AliceCengal/forsp-web">[ Github ]</a>
+          &ensp;
+          <a href="https://github.com/xorvoid/forsp">[ origin ]</a>
+        </div>
+        <hr />
+        <Box
+          as="div"
+          textAlign="center"
+          fontSize="small"
+          marginBlockStart="-18px"
+        >
+          built-ins
         </Box>
 
-        <button
-          onClick={() => {
-            dispatch({
-              name: `New File ${fileCount + 1}`,
-              cts: Date.now().toString(36),
-              uts: Date.now().toString(36),
-              content: "",
-            });
-          }}
+        <Grid gap="var(--sp-0_5)">
+          {systemFiles.map((fid) => (
+            <SystemFileItem key={fid} fileId={fid} />
+          ))}
+        </Grid>
+
+        <hr />
+        <Box
+          as="div"
+          textAlign="center"
+          fontSize="small"
+          marginBlockStart="-18px"
         >
-          new file
-        </button>
-        {fileList.map((fid) => (
-          <FileItem key={fid} fileId={fid} />
-        ))}
-      </Grid>
+          user files
+        </Box>
+
+        <Grid
+          gap="var(--sp-0_5)"
+          paddingBlock="var(--sp-1)"
+          overflowY="auto"
+          overflowX="hidden"
+        >
+          {userFiles.map((fid) => (
+            <UserFileItem key={fid} fileId={fid} />
+          ))}
+        </Grid>
+
+        <Grid>
+          <NewFileButton />
+        </Grid>
+      </Flex>
     </div>
   );
 }

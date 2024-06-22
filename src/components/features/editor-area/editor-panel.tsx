@@ -13,7 +13,7 @@ export function EditorPanel({ group }: { group: any }) {
   const dispatch = useFileDispatch();
   group;
 
-  const [value, setValue] = useDebouncedState(file.content, {
+  const [value, setValue] = useDebouncedState(file?.content ?? "", {
     delay: 2000,
     onChange: (value) => {
       if (file.content != value) {
@@ -25,6 +25,10 @@ export function EditorPanel({ group }: { group: any }) {
       }
     },
   });
+
+  if (!file) {
+    return null;
+  }
 
   return (
     <Suspense fallback={<div>Loading...</div>}>

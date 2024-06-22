@@ -11,6 +11,10 @@ h4 {
   font-size: 1.25rem;
 }
 
+a {
+  color: var(--c-front);
+}
+
 div#root {
   background-color: var(--c-back);
   color: var(--c-con-9);
@@ -51,6 +55,42 @@ div#root {
   --sp-lg: 1200px;
 }
 
+.pad-0 {
+  padding: var(--sp-0);
+}
+
+.pad-0_25 {
+  padding: var(--sp-0_25);
+}
+
+.pad-0_5 {
+  padding: var(--sp-0_5);
+}
+
+.pad-1 {
+  padding: var(--sp-1);
+}
+
+.pad-2 {
+  padding: var(--sp-2);
+}
+
+.pad-3 {
+  padding: var(--sp-3);
+}
+
+.pad-4 {
+  padding: var(--sp-4);
+}
+
+.pad-5 {
+  padding: var(--sp-5);
+}
+
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.5);
+}
+
+.material-icons-outlined {
+  vertical-align: middle;
 }
