@@ -3,6 +3,7 @@ import { create } from "zustand";
 import { useShallow } from "zustand/react/shallow";
 import { APP } from "../utils/local-store-keys";
 import { persist } from "zustand/middleware";
+import presets from "../../data/presets.json";
 
 type ContentFile = {
   name: string;
@@ -12,7 +13,9 @@ type ContentFile = {
 };
 
 const useFileController = create<Record<string, ContentFile>>()(
-  persist(() => ({}), { name: `${APP}-files` })
+  persist(() => presets as Record<string, ContentFile>, {
+    name: `${APP}-files`,
+  })
 );
 
 export function useFileCount() {

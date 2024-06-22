@@ -1,6 +1,6 @@
 .editor-layout {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-content: stretch;
+  display: flex;
   height: 100%;
+  gap: 8px;
+  padding: 8px;
 }

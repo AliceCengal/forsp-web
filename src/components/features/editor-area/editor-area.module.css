@@ -1,6 +1,5 @@
 .editor-container {
-  display: grid;
-  align-content: stretch;
   border: 1px solid lightgray;
-  margin: 8px;
+  height: 100%;
+  flex-grow: 1;
 }

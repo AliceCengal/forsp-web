@@ -5,6 +5,7 @@ import {
 } from "../../../controllers/files";
 import { Box, Grid } from "../../common/box";
 import styles from "./control-bar.module.css";
+import { FileItem } from "./file-item";
 
 export function ControlBar() {
   const fileCount = useFileCount();
@@ -31,7 +32,7 @@ export function ControlBar() {
           new file
         </button>
         {fileList.map((fid) => (
-          <button>{fid}</button>
+          <FileItem key={fid} fileId={fid} />
         ))}
       </Grid>
     </div>
