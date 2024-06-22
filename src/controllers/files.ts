@@ -67,6 +67,6 @@ export function useFileDispatch() {
 
 export function readFileSync(filename: string) {
   return Object.entries(useFileController.getState()).find(
-    ([_, v]) => v.name.slice(0, -3) === filename
+    ([_, v]) => v.name === filename
   )?.[1]?.content;
 }
