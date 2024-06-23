@@ -1,6 +1,17 @@
 .editor-layout {
-  display: flex;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "sidebar" "main";
   height: 100%;
   gap: 8px;
   padding: 8px;
+}
+
+@media (min-width: 640px) {
+  .editor-layout {
+    grid-template-areas: "main sidebar";
+    grid-template-rows: minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) 240px;
+  }
 }

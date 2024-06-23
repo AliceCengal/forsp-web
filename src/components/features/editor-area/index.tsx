@@ -1,5 +1,5 @@
 import { useActiveEditorForGroup } from "../../../controllers/editors";
-import { Box } from "../../common/box";
+import { Grid } from "../../common/box";
 import styles from "./editor-area.module.css";
 import { EditorGroupHeader } from "./editor-group-header";
 import { EditorPanel } from "./editor-panel";
@@ -15,17 +15,17 @@ export function EditorArea() {
 
 function EditorGroup() {
   const active = useActiveEditorForGroup();
-  console.log("EditorGroup", { active });
+  // console.log("EditorGroup", { active });
   return (
-    <Box
+    <Grid
       height="100%"
-      display="grid"
-      gridTemplateRows="auto 1fr"
       position="relative"
+      gridTemplateRows="auto minmax(0, 1fr)"
+      gridTemplateColumns="minmax(0,1fr)"
     >
       <EditorGroupHeader />
       <EditorRunner />
       <EditorPanel key={active.fileId} group="" />
-    </Box>
+    </Grid>
   );
 }

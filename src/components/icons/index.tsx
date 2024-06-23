@@ -24,6 +24,10 @@ export function ExpandIcon() {
   );
 }
 
+export function DropDownIcon() {
+  return <span className="material-icons-outlined">arrow_drop_down</span>;
+}
+
 export function OutboundIcon() {
   return <span className="material-icons-outlined">open_in_new</span>;
 }

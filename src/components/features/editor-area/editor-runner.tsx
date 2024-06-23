@@ -6,10 +6,12 @@ import { button } from "../../common/button";
 import { CloseIcon, PlayIcon } from "../../icons";
 import { panel } from "../../common/panel";
 import { IO, run, setup } from "../../../lib/forsp";
+import { useMediaQuery } from "../../../utils/use-media-query";
 
 export function EditorRunner() {
   const active = useActiveEditorForGroup();
   const file = useFile(active.fileId);
+  const isBigScreen = useMediaQuery("(min-width:640px)");
 
   const [isRunning, setRunning] = useState(false);
   const [result, setResult] = useState<string[]>([]);
@@ -47,6 +49,8 @@ export function EditorRunner() {
     run(state);
   }
 
+  const btnSize = isBigScreen ? "large" : "regular";
+
   return (
     <Box
       position="absolute"
@@ -58,14 +62,14 @@ export function EditorRunner() {
       <Flex justifyContent="flex-end">
         {isRunning && (
           <button
-            className={button({ kind: "soft", size: "large" })}
+            className={button({ kind: "soft", size: btnSize })}
             onClick={() => setRunning(false)}
           >
             <CloseIcon />
           </button>
         )}
         <button
-          className={button({ kind: "bold", size: "large" })}
+          className={button({ kind: "bold", size: btnSize })}
           onClick={handleRun}
         >
           <PlayIcon />
