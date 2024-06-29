@@ -10,7 +10,7 @@ import { useMediaQuery } from "../../../utils/use-media-query";
 
 export function EditorRunner() {
   const active = useActiveEditorForGroup();
-  const file = useFile(active.fileId);
+  const file = useFile(active?.fileId);
   const isBigScreen = useMediaQuery("(min-width:640px)");
 
   const [isRunning, setRunning] = useState(false);
@@ -59,22 +59,24 @@ export function EditorRunner() {
       zIndex="10"
       width={isRunning ? "80%" : "auto"}
     >
-      <Flex justifyContent="flex-end">
-        {isRunning && (
+      {Boolean(file?.content) && (
+        <Flex justifyContent="flex-end">
+          {isRunning && (
+            <button
+              className={button({ kind: "soft", size: btnSize })}
+              onClick={() => setRunning(false)}
+            >
+              <CloseIcon />
+            </button>
+          )}
           <button
-            className={button({ kind: "soft", size: btnSize })}
-            onClick={() => setRunning(false)}
+            className={button({ kind: "bold", size: btnSize })}
+            onClick={handleRun}
           >
-            <CloseIcon />
+            <PlayIcon />
           </button>
-        )}
-        <button
-          className={button({ kind: "bold", size: btnSize })}
-          onClick={handleRun}
-        >
-          <PlayIcon />
-        </button>
-      </Flex>
+        </Flex>
+      )}
       {isRunning && (
         <Box
           className={panel()}
@@ -83,8 +85,8 @@ export function EditorRunner() {
           whiteSpace="pre-wrap"
           resize="vertical"
         >
-          {result.map((row) => (
-            <div>{row}</div>
+          {result.map((row, ix) => (
+            <div key={ix}>{row}</div>
           ))}
         </Box>
       )}

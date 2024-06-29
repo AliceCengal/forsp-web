@@ -33,13 +33,13 @@ export function SystemFileItem({ fileId }: Props) {
       <button
         className={
           styles[
-            active.fileId === fileId
+            active?.fileId === fileId
               ? "file-item-button-active"
               : "file-item-button"
           ]
         }
         onClick={() => {
-          if (active.fileId !== fileId) {
+          if (active?.fileId !== fileId) {
             dispatch({
               fileId,
               row: 0,
@@ -68,13 +68,13 @@ export function UserFileItem({ fileId }: Props) {
       <button
         className={
           styles[
-            active.fileId === fileId
+            active?.fileId === fileId
               ? "file-item-button-active"
               : "file-item-button"
           ]
         }
         onClick={() => {
-          if (active.fileId !== fileId) {
+          if (active?.fileId !== fileId) {
             dispatch({
               fileId,
               row: 0,

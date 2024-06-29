@@ -12,19 +12,7 @@ type EditorPage = {
 };
 
 const useEditorController = create<Record<string, EditorPage>>()(
-  persist(
-    () =>
-      ({
-        tutorial: {
-          fileId: "tutorial",
-          row: 0,
-          column: 0,
-          active: true,
-          seq: 1,
-        },
-      } as Record<string, EditorPage>),
-    { name: `${APP}-editors` }
-  )
+  persist(() => ({} as Record<string, EditorPage>), { name: `${APP}-editors` })
 );
 
 export function useEditorGroups() {

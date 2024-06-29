@@ -25,7 +25,7 @@ function EditorGroup() {
     >
       <EditorGroupHeader />
       <EditorRunner />
-      <EditorPanel key={active.fileId} group="" />
+      <EditorPanel key={active?.fileId ?? ""} group="" />
     </Grid>
   );
 }

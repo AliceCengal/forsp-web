@@ -1,4 +1,8 @@
-import { useSystemFileList, useUserFileList } from "../../../controllers/files";
+import {
+  useFilesSeeding,
+  useSystemFileList,
+  useUserFileList,
+} from "../../../controllers/files";
 import { useMediaQuery } from "../../../utils/use-media-query";
 import { Box, Flex, Grid } from "../../common/box";
 import { DropDownIcon } from "../../icons";
@@ -7,6 +11,7 @@ import { NewFileButton, SystemFileItem, UserFileItem } from "./file-item";
 
 export function ControlBar() {
   const isBigScreen = useMediaQuery("(min-width:640px)");
+  useFilesSeeding();
 
   return (
     <div className={styles["container"]}>
@@ -35,7 +40,7 @@ function ControlBarLarge() {
         fontSize="small"
         marginBlockStart="-18px"
       >
-        built-ins
+        remotes
       </Box>
 
       <Grid gap="var(--sp-0_5)">
@@ -51,7 +56,7 @@ function ControlBarLarge() {
         fontSize="small"
         marginBlockStart="-18px"
       >
-        user files
+        locals
       </Box>
 
       <Grid
@@ -98,7 +103,7 @@ function ControlBarSmall() {
           fontSize="small"
           marginBlockStart="-18px"
         >
-          built-ins
+          remotes
         </Box>
 
         <Grid gap="var(--sp-0_5)">
@@ -114,7 +119,7 @@ function ControlBarSmall() {
           fontSize="small"
           marginBlockStart="-18px"
         >
-          user files
+          locals
         </Box>
 
         <Grid

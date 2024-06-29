@@ -2,3 +2,9 @@
   grid-area: main;
   border: 1px solid lightgray;
 }
+
+.panel-link {
+  all: unset;
+  outline: revert;
+  text-decoration: underline;
+}
