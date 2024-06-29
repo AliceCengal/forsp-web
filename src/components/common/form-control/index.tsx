@@ -1,5 +1,6 @@
 import {
   HTMLAttributes,
+  InputHTMLAttributes,
   PropsWithChildren,
   ReactNode,
   createContext,
@@ -12,7 +13,7 @@ type FormControlBase<T> = {
   layout?: T;
 };
 type TextFieldLayout = "vertical" | "horizontal" | "freeform";
-type TextFieldProps = HTMLAttributes<HTMLInputElement> &
+type TextFieldProps = InputHTMLAttributes<HTMLInputElement> &
   FormControlBase<TextFieldLayout>;
 
 export function TextField({ label, hint, layout, ...props }: TextFieldProps) {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useActiveEditorForGroup } from "../../../controllers/editors";
 import { readFileSync, useFile } from "../../../controllers/files";
 import { Box, Flex } from "../../common/box";
@@ -8,19 +8,13 @@ import { panel } from "../../common/panel";
 import { IO, run, setup } from "../../../lib/forsp";
 import { useMediaQuery } from "../../../utils/use-media-query";
 
-export function EditorRunner() {
-  const active = useActiveEditorForGroup();
-  const file = useFile(active?.fileId);
+export function EditorRunner({ file }: { file: ReturnType<typeof useFile> }) {
   const isBigScreen = useMediaQuery("(min-width:640px)");
 
   const [isRunning, setRunning] = useState(false);
   const [result, setResult] = useState<string[]>([]);
-
-  function handleRun() {
-    setRunning(true);
-    setResult([`Running "${file.name}"...`]);
-
-    const adapter: IO = {
+  const adapter = useMemo<IO>(
+    () => ({
       std: {
         readLine: function (): string {
           throw new Error("Function not implemented.");
@@ -44,7 +38,14 @@ export function EditorRunner() {
           return fileContent;
         },
       },
-    };
+    }),
+    []
+  );
+
+  function handleRun() {
+    setRunning(true);
+    setResult([`Running "${file.name}"...`]);
+
     const state = setup(adapter, file.content);
     run(state);
   }

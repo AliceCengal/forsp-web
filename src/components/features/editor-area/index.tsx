@@ -3,7 +3,6 @@ import { Grid } from "../../common/box";
 import styles from "./editor-area.module.css";
 import { EditorGroupHeader } from "./editor-group-header";
 import { EditorPanel } from "./editor-panel";
-import { EditorRunner } from "./editor-runner";
 
 export function EditorArea() {
   return (
@@ -24,7 +23,6 @@ function EditorGroup() {
       gridTemplateColumns="minmax(0,1fr)"
     >
       <EditorGroupHeader />
-      <EditorRunner />
       <EditorPanel key={active?.fileId ?? ""} group="" />
     </Grid>
   );

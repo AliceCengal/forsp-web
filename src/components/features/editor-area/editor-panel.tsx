@@ -13,6 +13,8 @@ import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { Suspense, lazy } from "react";
 import { Box, Grid } from "../../common/box";
 import styles from "./editor-area.module.css";
+import { spinner } from "../../common/spinner";
+import { EditorRunner } from "./editor-runner";
 
 const CodeMirror = lazy(() => import("@uiw/react-codemirror"));
 
@@ -40,12 +42,18 @@ export function EditorPanel({ group }: { group: any }) {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Loading />}>
       <CodeMirror
         style={{ overflowY: "auto" }}
         theme={vscodeDark}
         value={value}
         onChange={setValue}
+      />
+      <EditorRunner
+        file={{
+          ...file,
+          content: value,
+        }}
       />
     </Suspense>
   );
@@ -56,6 +64,19 @@ const NEW_FILE_CONTENT = `\
   stack print;
 )\
 `;
+
+function Loading() {
+  return (
+    <Grid justifyItems="center" alignContent="center" maxHeight="75vh">
+      <div
+        className={spinner({
+          size: "xlarge",
+          kind: "con",
+        })}
+      ></div>
+    </Grid>
+  );
+}
 
 function EmptyPanel() {
   const fileCount = useFileCount();
