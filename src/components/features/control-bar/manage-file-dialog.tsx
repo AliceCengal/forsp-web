@@ -2,7 +2,7 @@ import { cloneElement } from "react";
 
 import { useFile, useFileDispatch } from "../../../controllers/files";
 import { PropsWithChildElem } from "../../../utils/components";
-import { Box, Flex, Grid } from "../../common/box";
+import { Box, Grid } from "../../common/box";
 import { button } from "../../common/button";
 import { CloseIcon, DoneIcon } from "../../icons";
 

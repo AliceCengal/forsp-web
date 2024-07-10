@@ -79,3 +79,7 @@ export function DoneIcon() {
 export function PlayIcon() {
   return <span className="material-icons-outlined">play_arrow</span>;
 }
+
+export function OpenDrawerIcon() {
+  return <span className="material-icons-outlined">keyboard_arrow_down</span>;
+}
