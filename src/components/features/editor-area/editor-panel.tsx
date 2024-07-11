@@ -85,7 +85,7 @@ function EmptyPanel() {
 
   function handleOpenTutorial() {
     editorDispatch({
-      fileId: "tutorial",
+      fileId: "tutorial.fp",
       row: 0,
       column: 0,
       active: true,
