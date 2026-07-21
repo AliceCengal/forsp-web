@@ -1,11 +1,11 @@
-import { run, setup } from "../lib/forsp";
+import { run, setup, IO } from "../lib/forsp";
 
 const SCRIPT_NAME = "forsp-worker";
 
 let resolvePendingTask: ((a: string) => void) | null = null;
 let rejectPendingTask: ((a: string) => void) | null = null;
 
-const adapter = {
+const adapter: IO = {
   std: {
     readLine: function (): Promise<string> {
       throw new Error("Function not implemented.");

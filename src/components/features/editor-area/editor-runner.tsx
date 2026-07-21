@@ -18,7 +18,7 @@ export function EditorRunner({ file }: { file: ReturnType<typeof useFile> }) {
 
   function handleRun() {
     setRunning(true);
-    setResult([`Running "${file.name}"...`]);
+    setResult([`Running "${file.name}"...`, ""]);
 
     if (workerRef.current) {
       workerRef.current.terminate();
@@ -32,7 +32,7 @@ export function EditorRunner({ file }: { file: ReturnType<typeof useFile> }) {
       switch (e.data.tag) {
         case "stdout":
         case "stderr":
-          setResult((res) => res.concat(e.data.data));
+          setResult((res) => res.with(-1, res.at(-1) + e.data.data));
           break;
         case "fileRead":
           const filePath = e.data.data;
