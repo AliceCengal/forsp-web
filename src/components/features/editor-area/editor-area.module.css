@@ -7,4 +7,5 @@
   all: unset;
   outline: revert;
   text-decoration: underline;
+  cursor: pointer;
 }

@@ -29,11 +29,20 @@ export function useActiveEditorForGroup() {
 
 export function useEditorDispatch() {
   return useCallback((f: EditorPage) => {
-    useEditorController.setState(
-      {
-        [f.fileId]: f,
-      },
-      true
-    );
+    if (!f.active) {
+      useEditorController.setState(
+        {
+          [f.fileId]: undefined,
+        },
+        true
+      );
+    } else {
+      useEditorController.setState(
+        {
+          [f.fileId]: f,
+        },
+        true
+      );
+    }
   }, []);
 }

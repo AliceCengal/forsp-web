@@ -112,7 +112,7 @@ function EmptyPanel() {
 
   return (
     <Grid justifyItems="center" alignContent="center" maxHeight="75vh">
-      <Box fontSize="xxx-large" marginBlockEnd="1rem">
+      <Box fontSize="xxx-large" marginBlockEnd="1rem" textAlign="center">
         Welcome to Forsp Web!
       </Box>
       <p>
@@ -120,6 +120,9 @@ function EmptyPanel() {
         <button className={styles["panel-link"]} onClick={handleOpenTutorial}>
           [ open tutorial ]
         </button>
+      </p>
+      <p>
+        &gt; See some examples: <a className={styles["panel-link"]} href="https://raw.githubusercontent.com/AliceCengal/forsp-js/refs/heads/main/data/examples/html-notation.fp">[ HTML representation ]</a>
       </p>
       <p>
         &gt; Or start hacking&emsp;

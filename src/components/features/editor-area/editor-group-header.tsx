@@ -1,4 +1,4 @@
-import { useActiveEditorForGroup } from "../../../controllers/editors";
+import { useActiveEditorForGroup, useEditorDispatch } from "../../../controllers/editors";
 import { useFile } from "../../../controllers/files";
 import { Flex } from "../../common/box";
 import { button } from "../../common/button";
@@ -19,16 +19,19 @@ export function EditorGroupHeader() {
 function EditorHeader() {
   const editor = useActiveEditorForGroup();
   const file = useFile(editor?.fileId);
+  const editorDispatch = useEditorDispatch();
 
   return (
     <Flex alignItems="center">
-      <span>{file?.name ?? ""}</span>&nbsp;
-      <button
-        className={button({ kind: "text", size: "small" })}
-        style={{ display: "none" }}
-      >
-        <CloseIcon />
-      </button>
+      {file?.name && <>
+        <span>{file?.name ?? ""}</span>&nbsp;
+        <button
+          className={button({ kind: "text", size: "small" })}
+          onClick={() => { editorDispatch({ ...editor, active: false }) }}
+        >
+          <CloseIcon />
+        </button>
+      </>}
     </Flex>
   );
 }
