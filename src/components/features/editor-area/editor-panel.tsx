@@ -122,7 +122,9 @@ function EmptyPanel() {
         </button>
       </p>
       <p>
-        &gt; See some examples: <a className={styles["panel-link"]} href="https://raw.githubusercontent.com/AliceCengal/forsp-js/refs/heads/main/data/examples/html-notation.fp">[ HTML representation ]</a>
+        &gt; See some examples:
+        &emsp;<a className={styles["panel-link"]} href="https://raw.githubusercontent.com/AliceCengal/forsp-js/refs/heads/main/data/examples/html-notation.fp">[ HTML representation ]</a>
+        &nbsp;<a className={styles["panel-link"]} href="https://raw.githubusercontent.com/AliceCengal/forsp-js/refs/heads/main/data/examples/sequence-transform.fp">[ Van_Wijngaarden_transformation ]</a>
       </p>
       <p>
         &gt; Or start hacking&emsp;
